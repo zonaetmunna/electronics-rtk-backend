@@ -1,3 +1,0 @@
-- database url(mongodb+srv://<username>:<password>@cluster0.fzf5yey.mongodb.net/test)
-- database user: zonaet
-- database pass: jNXkZxyiJUAO2JD2
