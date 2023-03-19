@@ -1,0 +1,24 @@
+{
+  "name": "electronics-rtk-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "mongoose": "^7.0.2",
+    "mongoose-beautiful-unique-validation": "^7.1.1",
+    "mongoose-slug-generator": "^1.0.4",
+    "nodemon": "^2.0.21"
+  },
+  "description": "- database url(mongodb+srv://<username>:<password>@cluster0.fzf5yey.mongodb.net/test)\r - database user: zonaet\r - database pass: jNXkZxyiJUAO2JD2",
+  "devDependencies": {},
+  "keywords": [],
+  "author": ""
+}
