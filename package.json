@@ -17,7 +17,6 @@
     "mongoose-slug-generator": "^1.0.4",
     "nodemon": "^2.0.21"
   },
-  "description": "- database url(mongodb+srv://<username>:<password>@cluster0.fzf5yey.mongodb.net/test)\r - database user: zonaet\r - database pass: jNXkZxyiJUAO2JD2",
   "devDependencies": {},
   "keywords": [],
   "author": ""

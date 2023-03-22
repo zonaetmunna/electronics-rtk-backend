@@ -21,15 +21,13 @@ if (!dbUrl) {
 // mongoose connect // mongoose
 mongoose.connect(
   dbUrl
-  /* ,
-  {
-    useNewUrlParser: true,
-  },
-  (error) => {
-    if (error) {
-      console.log(`FAILED to connect using mongoose. ${error}`);
-    } else {
-      console.log(`Connected to DB server. ( ${process.env.NODE_ENV} )`);
-    }
+  /* , (error) => {
+  if (error) {
+    console.log(`FAILED to connect using mongoose. ${error}`);
+  } else {
+    console.log(`Connected to DB server. ( ${process.env.NODE_ENV} )`);
+  }
   } */
 );
+
+console.log("server connect ");

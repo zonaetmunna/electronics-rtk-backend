@@ -7,6 +7,7 @@ const registerUser = async (req, res, next) => {
     const body = req.body;
     const user = new Auth(body);
     await user.save();
+    console.log(user);
     return res.json(createResponse(user, "registration successfully", false));
   } catch (error) {
     next(error);
