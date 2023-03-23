@@ -14,12 +14,19 @@ const ProductSchema = new Schema(
       required: true,
     },
     brand: {
-      brand: String,
+      type: String,
+      required: true,
     },
     status: {
       type: Boolean,
       required: true,
     },
+    keyFeature: [
+      { keyFeature0: String },
+      { keyFeature1: String },
+      { keyFeature2: String },
+      { keyFeature3: String },
+    ],
     price: {
       type: Number,
       required: true,

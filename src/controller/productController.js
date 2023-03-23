@@ -9,7 +9,7 @@ const getProducts = async (req, res, next) => {
     // find product with server req from database
     const products = await Product.find(query);
     // return res
-    return res.json({ products });
+    return res.json(products);
   } catch (error) {
     next(error);
   }
