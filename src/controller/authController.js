@@ -19,9 +19,11 @@ const getUser = async (req, res, next) => {
     const email = req.params.email;
     const result = await Auth.findOne({ email });
     if (result?.email) {
-      return res.send({ status: true, data: result });
+      return res.send(
+        createResponse(result, "user get ed successfully", false, true)
+      );
     }
-    res.send({ status: false });
+    res.send(createResponse(null, "user geted false", true, false));
   } catch (error) {
     next(error);
   }

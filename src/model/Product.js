@@ -2,6 +2,31 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+const keyFeatureSchema = new Schema({
+  keyFeature0: String,
+  keyFeature1: String,
+  keyFeature2: String,
+  keyFeature3: String,
+});
+
+const spcSchema = new Schema({
+  processor: String,
+
+  motherboard: String,
+
+  ram: String,
+
+  graphics: String,
+
+  storage: String,
+
+  casing: String,
+
+  psu: String,
+
+  cooler: String,
+});
+
 const ProductSchema = new Schema(
   {
     model: {
@@ -21,12 +46,7 @@ const ProductSchema = new Schema(
       type: Boolean,
       required: true,
     },
-    keyFeature: [
-      { keyFeature0: String },
-      { keyFeature1: String },
-      { keyFeature2: String },
-      { keyFeature3: String },
-    ],
+    keyFeature: keyFeatureSchema,
     price: {
       type: Number,
       required: true,
@@ -34,32 +54,7 @@ const ProductSchema = new Schema(
     rating: {
       type: Number,
     },
-    spec: [
-      {
-        processor: String,
-      },
-      {
-        motherboard: String,
-      },
-      {
-        ram: String,
-      },
-      {
-        graphics: String,
-      },
-      {
-        storage: String,
-      },
-      {
-        casing: String,
-      },
-      {
-        psu: String,
-      },
-      {
-        cooler: String,
-      },
-    ],
+    spec: spcSchema,
   },
   { timestamp: true }
 );
