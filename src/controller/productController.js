@@ -6,12 +6,11 @@ const getProducts = async (req, res, next) => {
   try {
     // find product from server req
     const query = req.query;
-    console.log(query);
+
     // find product with server req from database
     const products = await Product.find(query);
-    console.log(products);
 
-    return res.json(createResponse(products));
+    return res.json(products);
   } catch (err) {
     next(err);
   }
@@ -24,8 +23,8 @@ const getSingleProduct = async (req, res, next) => {
     // server id use find database id
     const product = await Product.findOne({ _id: id });
     // check condition
-    // if (!product) throw new Error("No product found with this id!");
-    return res.json(createResponse(product, "single product geted", false));
+    if (!product) throw new Error("No product found with this id!");
+    return res.json(product);
   } catch (error) {
     next(error);
   }
@@ -35,10 +34,13 @@ const getSingleProduct = async (req, res, next) => {
 const postProduct = async (req, res, next) => {
   try {
     const body = req.body;
+    // call model
     const product = new Product(body);
-    console.log(product);
+    // save database
     await product.save();
-    return res.json(createResponse(null, "product added successfully", false));
+    return res
+      .status(201)
+      .json(createResponse(product, "Product Added successfully!", false));
   } catch (error) {
     next(error);
   }

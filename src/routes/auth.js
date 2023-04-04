@@ -5,7 +5,7 @@ const router = require("express").Router();
 const { registerUser, getUser } = require("../controller/authController");
 const errorHandler = require("../middleware/errorHandler");
 
-router.post("/user", registerUser, errorHandler);
-router.get("/user/:email", getUser, errorHandler);
+router.post("/user", registerUser);
+router.get("/user/:email", getUser);
 
 module.exports = router;

@@ -1,15 +1,8 @@
-const createResponse = (
-  data,
-  message = null,
-  error = false,
-  status = false,
-  token = null
-) => {
+const createResponse = (data, message = null, error = false, token = null) => {
   return {
     data,
     message,
     error,
-    status,
     token,
   };
 };
