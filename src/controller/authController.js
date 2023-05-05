@@ -17,6 +17,7 @@ const registerUser = async (req, res, next) => {
 const getUser = async (req, res, next) => {
   try {
     const email = req.params.email;
+    console.log(email);
     const result = await Auth.findOne({ email });
     if (result?.email) {
       return res.send(

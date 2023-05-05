@@ -1,3 +1,6 @@
+// external import
+const router = require("express").Router();
+// internal imports
 const {
   getProducts,
   getSingleProduct,
@@ -6,12 +9,9 @@ const {
 } = require("../controller/productController");
 const errorHandler = require("../middleware/errorHandler");
 
-// external import
-const router = require("express").Router();
-
+router.post("/", postProduct);
 router.get("/", getProducts);
 router.get("/:id", getSingleProduct);
-router.post("/", postProduct);
 router.delete("/:id", deleteProduct);
 
 module.exports = router;

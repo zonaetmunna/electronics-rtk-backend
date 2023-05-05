@@ -16,12 +16,10 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-//app api
-app.get("/", (req, res) => {
-  res.send("this is electronics rtk backed server");
-});
-
 // app routes
+/* app.use("/", (req, res) => {
+  res.json("hi electronics backend");
+}); */
 app.use("/api", routes);
 
 //app error handler
