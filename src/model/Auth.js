@@ -8,11 +8,13 @@ const AuthSchema = new Schema(
       unique: "Email Address is Already Registered!",
       required: [true, "Email is required!"],
       trim: true,
-      lowercase: true,
+    },
+    password: {
+      type: String,
     },
     role: {
       type: String,
-      default: "user",
+      // default: "user",
       enum: ["admin", "merchant", "user"],
     },
   },
