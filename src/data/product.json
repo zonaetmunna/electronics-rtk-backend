@@ -1,0 +1,155 @@
+[
+  {
+    "name": "Powerful Laptop",
+    "image": "laptop-image-url.jpg",
+    "price": 1200,
+    "description": "Experience the power of computing with our high-performance laptop.",
+    "category": {
+      "name": "Laptops",
+      "id": "64d1531f21a0b09612a43f38"
+    },
+    "brand": {
+      "name": "InnovaTech",
+      "id": "64d22ed0d0e514464ee19b13"
+    },
+    "stockQuantity": 50,
+    "reviews": [
+      {
+        "userId": "64d162a562394abf8754cde1",
+        "rating": 4,
+        "comment": "Great laptop!",
+        "createdAt": "2023-08-07T12:00:00Z"
+      }
+    ],
+    "status": true,
+    "specifications": {
+      "processor": "Intel Core i7",
+      "motherboard": "Intel Z590",
+      "ram": "16GB DDR4",
+      "graphics": "NVIDIA GeForce RTX 3070",
+      "storage": "1TB NVMe SSD",
+      "casing": "Aluminum chassis",
+      "psu": "500W",
+      "cooler": "Dual-fan cooling"
+    }
+  },
+  {
+    "name": "Gaming Desktop",
+    "image": "desktop-image-url.jpg",
+    "price": 1500,
+    "description": "Immerse yourself in the world of gaming with our powerful gaming desktop.",
+    "category": {
+      "name": "Desktops",
+      "id": "64d14f5849864fc1f776c9a7"
+    },
+    "brand": {
+      "name": "QuantumPC",
+      "id": "64d22ee3d0e514464ee19b15"
+    },
+    "stockQuantity": 30,
+    "reviews": [
+      {
+        "userId": "64d162a562394abf8754cde2",
+        "rating": 5,
+        "comment": "Amazing gaming performance!",
+        "createdAt": "2023-08-07T13:00:00Z"
+      }
+    ],
+    "status": true,
+    "specifications": {
+      "processor": "AMD Ryzen 9",
+      "motherboard": "ASUS ROG Strix X570",
+      "ram": "32GB DDR4",
+      "graphics": "NVIDIA GeForce RTX 3080",
+      "storage": "2TB NVMe SSD",
+      "casing": "Tempered glass panel",
+      "psu": "750W",
+      "cooler": "Liquid cooling"
+    }
+  },
+  {
+    "name": "Wireless Mouse",
+    "image": "mouse-image-url.jpg",
+    "price": 40,
+    "description": "Experience seamless control with our wireless gaming mouse.",
+    "category": {
+      "name": "Mice",
+      "id": "64d14f4d49864fc1f776c9a5"
+    },
+    "brand": {
+      "name": "SwiftGaming",
+      "id": "64d22ef8d0e514464ee19b17"
+    },
+    "stockQuantity": 100,
+    "reviews": [],
+    "status": true,
+    "specifications": {
+      "sensor": "Pixart PMW3360",
+      "dpi": "16000",
+      "connectivity": "Wireless",
+      "buttons": "6 programmable buttons",
+      "illumination": "RGB lighting"
+    }
+  },
+  {
+    "name": "Mechanical Keyboard",
+    "image": "keyboard-image-url.jpg",
+    "price": 80,
+    "description": "Elevate your typing and gaming experience with our mechanical keyboard.",
+    "category": {
+      "name": "Keyboards",
+      "id": "64d14f3d49864fc1f776c9a3"
+    },
+    "brand": {
+      "name": "MasterKeys",
+      "id": "64d22f07d0e514464ee19b19"
+    },
+    "stockQuantity": 70,
+    "reviews": [
+      {
+        "userId": "64d162a562394abf8754cde3",
+        "rating": 4,
+        "comment": "Love the tactile feedback!",
+        "createdAt": "2023-08-07T14:00:00Z"
+      }
+    ],
+    "status": true,
+    "specifications": {
+      "switches": "Cherry MX Red",
+      "layout": "Full-size",
+      "backlight": "RGB lighting",
+      "keycaps": "Double-shot ABS keycaps"
+    }
+  },
+  {
+    "name": "Over-Ear Headphones",
+    "image": "headphone-image-url.jpg",
+    "price": 120,
+    "description": "Immerse yourself in rich audio with our over-ear headphones.",
+    "category": {
+      "name": "Headphones",
+      "id": "64d1481c879985b30744cf89"
+    },
+    "brand": {
+      "name": "SonicWave",
+      "id": "64d22f1dd0e514464ee19b1b"
+    },
+    "stockQuantity": 90,
+    "reviews": [
+      {
+        "userId": "64d162a562394abf8754cde4",
+        "rating": 5,
+        "comment": "Fantastic sound quality!",
+        "createdAt": "2023-08-07T15:00:00Z"
+      }
+    ],
+    "status": true,
+    "specifications": {
+      "driver": "50mm neodymium",
+      "frequencyResponse": "20Hz - 20kHz",
+      "connectivity": "Wired",
+      "noiseCancellation": "Active noise cancellation",
+      "comfort": "Memory foam ear cushions"
+    }
+  }
+]

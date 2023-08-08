@@ -1,11 +1,7 @@
-// internal import
 const Category = require("../model/Category.model");
-const Brand = require("../model/brand.model");
-const Product = require("../model/product.model");
 const createResponse = require("../utils/responseGenerate");
 
-// get all products controller
-const getProducts = async (req, res, next) => {
+const getCategories = async (req, res, next) => {
   try {
     let queries = { ...req.query };
 
@@ -74,90 +70,67 @@ const getProducts = async (req, res, next) => {
       };
     }
 
-    // find product with server req from database
-    const productsQuery = await Product.find(queries)
+    const categories = await Category.find({})
       .sort(filters.sortBy)
-      .select(filters.fields)
       .skip(filters.skip)
       .limit(filters.limit)
-      .populate("category brand")
+      .select(filters.fields)
+      .populate("products")
       .exec();
-
-    /*  // Check if 'category' field needs to be populated
-    if (req.query.populateCategory) {
-      productsQuery.populate("category");
-    } */
-
-    // const products = await productsQuery.exec();
-
-    return res
-      .status(200)
-      .json(createResponse(productsQuery, "Products get successfully", false));
-  } catch (err) {
-    next(err);
-  }
-};
-// get single product
-const getSingleProduct = async (req, res, next) => {
-  try {
-    // find id from server
-    const { id } = req.params;
-    // server id use find database id
-    const product = await Product.findOne({ _id: id });
-    // check condition
-    if (!product) {
-      res
-        .status(404)
-        .json(createResponse(null, "Product not found", true, false));
-    }
-    return res
-      .status(200)
-      .json(createResponse(product, "Product get successfully", false));
+    return res.json(categories);
   } catch (error) {
     next(error);
   }
 };
 
-// post product
-const postProduct = async (req, res, next) => {
+// Get single category by ID
+const getSingleCategory = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const category = await Category.findOne({ _id: id });
+    if (!category) throw new Error("No category found with this id!");
+    return res.json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Create a new category
+const postCategory = async (req, res, next) => {
   try {
     const body = req.body;
-    // save database
-    const product = await Product.create(body);
-    console.log(product);
-
-    const { _id: productId, category, brand } = product;
-    const result = await Brand.updateOne(
-      { _id: brand.id },
-      { $push: { products: productId } }
-    );
-    // Update the category's products array
-    const categoryUpdateResult = await Category.updateOne(
-      { _id: category.id }, // Use the category ID from the product
-      { $push: { products: productId } }
-    );
-    return res.status(201).json(
-      createResponse(
-        {
-          result,
-          categoryUpdateResult,
-        },
-        "Product Added successfully!",
-        false
-      )
-    );
+    const category = new Category(body);
+    await category.save();
+    return res
+      .status(201)
+      .json(createResponse(category, "Category added successfully!", false));
   } catch (error) {
     next(error);
   }
 };
 
-// delete product
-const deleteProduct = async (req, res, next) => {
+// update a category by ID
+const updateCategory = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const category = await Category.findOneAndUpdate({ _id: id }, body, {
+      new: true,
+    });
+    if (!category) throw new Error("No category found with this id!");
+    return res.json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Delete a category by ID
+const deleteCategory = async (req, res, next) => {
   try {
     const id = req.params._id;
-    await Product.deleteOne({ _id: id });
+    await Category.deleteOne({ _id: id });
     return res.json(
-      createResponse(null, "product deleted successfully", false)
+      createResponse(null, "Category deleted successfully", false)
     );
   } catch (error) {
     next(error);
@@ -165,8 +138,9 @@ const deleteProduct = async (req, res, next) => {
 };
 
 module.exports = {
-  getProducts,
-  getSingleProduct,
-  postProduct,
-  deleteProduct,
+  getCategories,
+  getSingleCategory,
+  postCategory,
+  updateCategory,
+  deleteCategory,
 };

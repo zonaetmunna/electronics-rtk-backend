@@ -20,10 +20,10 @@ app.use(express.json());
 /* app.use("/", (req, res) => {
   res.json("hi electronics backend");
 }); */
-app.use("/api", routes);
+app.use("/api/v1", routes);
 
 //app error handler
-app.use(errorHandler);
+// app.use(errorHandler);
 
 // app listen
 app.listen(port, () => {

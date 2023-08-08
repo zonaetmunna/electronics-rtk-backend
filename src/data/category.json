@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Laptops",
+    "description": "Explore a wide range of high-performance laptops for work and entertainment."
+  },
+  {
+    "name": "Desktops",
+    "description": "Discover powerful desktop computers that cater to your computing needs."
+  },
+  {
+    "name": "Mice",
+    "description": "Enhance your computing experience with precision-engineered mice for various tasks."
+  },
+  {
+    "name": "Keyboards",
+    "description": "Choose from a collection of keyboards designed for both typing comfort and gaming excellence."
+  },
+  {
+    "name": "Headphones",
+    "description": "Immerse yourself in exceptional audio quality with our diverse range of headphones."
+  }
+]

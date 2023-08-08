@@ -7,7 +7,6 @@ const {
   postProduct,
   deleteProduct,
 } = require("../controller/productController");
-const errorHandler = require("../middleware/errorHandler");
 
 router.post("/", postProduct);
 router.get("/", getProducts);
