@@ -17,7 +17,7 @@ router.post("/signup", registerUser, errorHandler);
 router.post("/login", login, errorHandler);
 router.get(
   "/users",
-  passport.authenticate("jwt", { session: false }),
+  //   passport.authenticate("jwt", { session: false }),
   getUsers
 );
 router.get("/user/:id", getUser);
