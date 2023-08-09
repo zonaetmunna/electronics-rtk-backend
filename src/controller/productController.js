@@ -1,5 +1,5 @@
 // internal import
-const Category = require("../model/Category.model");
+const Category = require("../model/category.model");
 const Brand = require("../model/brand.model");
 const Product = require("../model/product.model");
 const createResponse = require("../utils/responseGenerate");

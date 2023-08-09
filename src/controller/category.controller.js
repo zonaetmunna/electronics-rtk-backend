@@ -1,4 +1,4 @@
-const Category = require("../model/Category.model");
+const Category = require("../model/category.model");
 const createResponse = require("../utils/responseGenerate");
 
 const getCategories = async (req, res, next) => {
