@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // app routes
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.json("hi electronics backend");
 });
 app.use("/api/v1", routes);
