@@ -34,7 +34,7 @@ const login = async (req, res, next) => {
 
     const token = jwt.issueJWT(user);
     return res.json(
-      responseGenerate(
+      createResponse(
         {
           firstName: user.name,
           lastName: user.lastName,

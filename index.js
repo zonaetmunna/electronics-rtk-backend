@@ -2,7 +2,6 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-
 // import internal
 const db = require("./src/config/db");
 const errorHandler = require("./src/middleware/errorHandler");

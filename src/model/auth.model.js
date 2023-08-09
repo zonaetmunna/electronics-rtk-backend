@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const bcrypt = require("bcrypt");
 
 const AuthSchema = new Schema(
   {
@@ -39,5 +40,18 @@ const AuthSchema = new Schema(
   },
   { timestamp: true }
 );
+
+AuthSchema.pre("save", async function (next) {
+  const user = this;
+  const hash = await bcrypt.hash(user.password, 10);
+  this.password = hash;
+  next();
+});
+
+AuthSchema.methods.isValidPassword = async function (password) {
+  const user = this;
+  const compare = await bcrypt.compare(password, user.password);
+  return compare;
+};
 
 module.exports = mongoose.model("Auth", AuthSchema);

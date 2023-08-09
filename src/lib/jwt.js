@@ -16,7 +16,7 @@ function issueJWT(user, expiresTime) {
     iat: new Date().getTime() / 1000,
   };
 
-  const signedToken = jsonwebtoken.sign(payload, "thesecret", {
+  const signedToken = jsonwebtoken.sign(payload, process.env.JWT_SECRET_KEY, {
     algorithm: "HS256",
   });
 
