@@ -8,16 +8,19 @@ const createResponse = require("../utils/responseGenerate");
 const getProducts = async (req, res, next) => {
   try {
     let queries = { ...req.query };
+    console.log(queries);
 
     // Sort, page, limit -> exclude
     const excludeFields = [
       "search",
       "category",
+      "brand",
       "sort",
       "page",
       "limit",
       "minPrice",
       "maxPrice",
+      "stock",
     ];
     excludeFields.forEach((field) => delete queries[field]);
     console.log(excludeFields);
@@ -60,7 +63,16 @@ const getProducts = async (req, res, next) => {
 
     if (req.query.category) {
       const categoryName = req.query.category; // Get category name from query
-      queries.category = categoryName;
+      queries["category.name"] = categoryName;
+    }
+
+    if (req.query.brand) {
+      const brandName = req.query.brand; // Get brand name from query
+      queries["brand.name"] = brandName;
+    }
+
+    if (req.query.stock) {
+      queries.stock = req.query.stock;
     }
 
     // Handle minimum and maximum price
@@ -82,6 +94,8 @@ const getProducts = async (req, res, next) => {
       .limit(filters.limit)
       .populate("category brand")
       .exec();
+
+    console.log(productsQuery);
 
     /*  // Check if 'category' field needs to be populated
     if (req.query.populateCategory) {

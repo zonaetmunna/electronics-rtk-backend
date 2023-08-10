@@ -21,8 +21,8 @@ app.get("/", (req, res) => {
 });
 app.use("/api/v1", routes);
 
-//app error handler
-// app.use(errorHandler);
+// app error handler
+app.use(errorHandler);
 
 // app listen
 app.listen(port, () => {

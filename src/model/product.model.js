@@ -80,7 +80,7 @@ const ProductSchema = mongoose.Schema(
         },
       },
     ],
-    status: {
+    stock: {
       type: Boolean,
       required: true,
     },

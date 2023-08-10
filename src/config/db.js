@@ -30,4 +30,4 @@ mongoose.connect(
   } */
 );
 
-console.log("server connect ");
+console.log("database server connect ");
