@@ -17,9 +17,14 @@ const orderSchema = new Schema(
         },
       },
     ],
-    user: {
+    // it is modify future
+    /* user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
+    }, */
+    user: {
+      type: String,
       required: true,
     },
     totalAmount: {
@@ -32,6 +37,10 @@ const orderSchema = new Schema(
       state: String,
       postalCode: String,
       country: String,
+    },
+    paymentIntentId: {
+      // Add a field to store the Stripe Payment Intent ID
+      type: String,
     },
     status: {
       type: String,

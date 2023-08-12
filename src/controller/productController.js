@@ -165,6 +165,23 @@ const postProduct = async (req, res, next) => {
   }
 };
 
+// update products
+const updateProduct = async (req, res, next) => {
+  try {
+    const id = req.params._id;
+    const body = req.body;
+    const product = await Product.findOneAndUpdate({ _id: id }, body, {
+      new: true,
+    });
+    if (!product) throw new Error("No product found with this id!");
+    return res.json(
+      createResponse(product, "Product updated successfully", false)
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
 // delete product
 const deleteProduct = async (req, res, next) => {
   try {
@@ -182,5 +199,6 @@ module.exports = {
   getProducts,
   getSingleProduct,
   postProduct,
+  updateProduct,
   deleteProduct,
 };

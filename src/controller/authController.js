@@ -3,13 +3,20 @@ const createResponse = require("../utils/responseGenerate");
 const jwt = require("../lib/jwt");
 
 // registerUser
-const registerUser = async (req, res, next) => {
+const signupUser = async (req, res, next) => {
   try {
     const body = req.body;
+    if (body.email) {
+      const existingUser = await Auth.findOne({ email: body.email });
+      if (existingUser) {
+        throw new Error("Email already exists!");
+      }
+    }
+
     const user = new Auth(body);
     await user.save();
     console.log(user);
-    return res.json(createResponse(user, "registration successfully", false));
+    return res.json(createResponse(user, "Registration successful", false));
   } catch (error) {
     next(error);
   }
@@ -52,6 +59,19 @@ const login = async (req, res, next) => {
     );
   } catch (err) {
     next(err);
+  }
+};
+
+const saveGoogleUserData = async (req, res, next) => {
+  try {
+    const { userData } = req.body; // Make sure you receive the user data in the request body
+    const user = new Auth(userData);
+    await user.save();
+    return res.json(
+      createResponse(user, "Google user data saved successfully", false)
+    );
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -103,8 +123,9 @@ const deleteUser = async (req, res, next) => {
 };
 
 module.exports = {
-  registerUser,
+  signupUser,
   login,
+  saveGoogleUserData,
   getUsers,
   getUser,
   profileUpdate,

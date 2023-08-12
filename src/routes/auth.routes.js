@@ -4,17 +4,19 @@ const passport = require("passport");
 
 // internal import
 const {
-  registerUser,
+  signupUser,
   getUser,
   login,
   getUsers,
   profileUpdate,
   deleteUser,
+  saveGoogleUserData,
 } = require("../controller/authController");
 const errorHandler = require("../middleware/errorHandler");
 
-router.post("/signup", registerUser, errorHandler);
+router.post("/signup", signupUser, errorHandler);
 router.post("/login", login, errorHandler);
+router.post("/saveGoogleUserData", saveGoogleUserData);
 router.get(
   "/users",
   //   passport.authenticate("jwt", { session: false }),
