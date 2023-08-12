@@ -10,13 +10,14 @@ const {
   getUsers,
   profileUpdate,
   deleteUser,
-  saveGoogleUserData,
+  googleSignin,
 } = require("../controller/authController");
 const errorHandler = require("../middleware/errorHandler");
 
 router.post("/signup", signupUser, errorHandler);
 router.post("/login", login, errorHandler);
-router.post("/saveGoogleUserData", saveGoogleUserData);
+router.post("/google-signin", googleSignin, errorHandler);
+
 router.get(
   "/users",
   //   passport.authenticate("jwt", { session: false }),
