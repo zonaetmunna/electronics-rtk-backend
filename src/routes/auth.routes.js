@@ -8,7 +8,7 @@ const {
   getUser,
   login,
   getUsers,
-  profileUpdate,
+  updateUser,
   deleteUser,
   googleSignin,
 } = require("../controller/authController");
@@ -24,7 +24,7 @@ router.get(
   getUsers
 );
 router.get("/user/:id", getUser);
-router.put("/user/:id", profileUpdate);
+router.put("/user/:id", updateUser);
 router.delete("/user/:id", deleteUser);
 
 module.exports = router;

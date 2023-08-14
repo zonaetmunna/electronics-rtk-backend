@@ -17,10 +17,8 @@ const getOrder = async (req, res, next) => {
 const getUserOrder = async (req, res, next) => {
   try {
     const query = req.query;
-    const { email } = query;
-    const orders = await Order.find({ "user.email": email }).populate(
-      "products"
-    );
+    const { _id } = query;
+    const orders = await Order.find({ _id: _id }).populate("products", "user");
     return res.json({ orders, message: " order get success" });
   } catch (error) {
     next(error);

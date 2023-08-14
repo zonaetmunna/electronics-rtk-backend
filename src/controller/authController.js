@@ -169,21 +169,6 @@ const googleSignin = async (req, res, next) => {
   }
 };
 
-// profile update
-const profileUpdate = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const body = req.body;
-    const user = await Auth.findOneAndUpdate({ _id: id }, body, {
-      new: true,
-    });
-    if (!user) throw new Error("No user found with this id!");
-    return res.json(user);
-  } catch (error) {
-    next(error);
-  }
-};
-
 // all users
 const getUsers = async (req, res, next) => {
   try {
@@ -200,6 +185,23 @@ const getUser = async (req, res, next) => {
     const user = await Auth.findOne({ _id: id });
     if (!user) throw new Error("No user found with this id!");
     return res.json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// update user
+const updateUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const user = await Auth.findOneAndUpdate({ _id: id }, body, {
+      new: true,
+    });
+    if (!user) {
+      return res.json(createResponse(null, "User not found", true, false));
+    }
+    return res.json(createResponse(user, "User updated successfully", false));
   } catch (error) {
     next(error);
   }
@@ -222,6 +224,6 @@ module.exports = {
   googleSignin,
   getUsers,
   getUser,
-  profileUpdate,
+  updateUser,
   deleteUser,
 };

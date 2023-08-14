@@ -17,16 +17,13 @@ const orderSchema = new Schema(
         },
       },
     ],
-    // it is modify future
-    /* user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    }, */
+
     user: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Auth",
       required: true,
     },
+
     totalAmount: {
       type: Number,
       required: true,
