@@ -18,8 +18,25 @@ const getUserOrder = async (req, res, next) => {
   try {
     const query = req.query;
     const { _id } = query;
-    const orders = await Order.find({ _id: _id }).populate("products", "user");
+    const orders = await Order.find({ _id: _id }).populate("products user");
     return res.json({ orders, message: " order get success" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get single order
+const getSingleOrder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const order = await Order.findOne({ _id: id })
+      .populate("products.product", "name price")
+      .populate("user", "firstName lastName email");
+    if (!order) {
+      return res.json(createResponse(null, "Order not found", true, false));
+    }
+    return res.json(createResponse(order, "Order fetched successfully", false));
   } catch (error) {
     next(error);
   }
@@ -43,5 +60,6 @@ const postOrder = async (req, res, next) => {
 module.exports = {
   getOrder,
   getUserOrder,
+  getSingleOrder,
   postOrder,
 };

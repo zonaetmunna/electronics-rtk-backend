@@ -87,9 +87,15 @@ const getCategories = async (req, res, next) => {
 const getSingleCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const category = await Category.findOne({ _id: id });
-    if (!category) throw new Error("No category found with this id!");
-    return res.json(category);
+    const category = await Category.findOne({ _id: id })
+      .populate("products")
+      .exec();
+    if (!category) {
+      return res.json(createResponse(null, "Category not found", true));
+    }
+    return res.json(
+      createResponse(category, "Category fetched successfully", false)
+    );
   } catch (error) {
     next(error);
   }
