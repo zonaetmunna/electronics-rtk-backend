@@ -95,8 +95,6 @@ const getProducts = async (req, res, next) => {
       .populate("category brand")
       .exec();
 
-    console.log(productsQuery);
-
     /*  // Check if 'category' field needs to be populated
     if (req.query.populateCategory) {
       productsQuery.populate("category");
@@ -168,12 +166,29 @@ const postProduct = async (req, res, next) => {
 // update products
 const updateProduct = async (req, res, next) => {
   try {
-    const id = req.params._id;
-    const body = req.body;
-    const product = await Product.findOneAndUpdate({ _id: id }, body, {
-      new: true,
-    });
-    if (!product) throw new Error("No product found with this id!");
+    const { id } = req.params;
+    console.log(id);
+    const { userId, rating, comment } = req.body.data;
+    console.log(userId, rating, comment);
+    const newReview = {
+      reviews: [
+        // Update the review fields as needed
+        {
+          userId: userId,
+          rating: rating,
+          comment: comment,
+        },
+      ],
+    };
+    const product = await Product.findOneAndUpdate(
+      { _id: id },
+      { $push: { reviews: newReview } },
+      { new: true }
+    ).populate("reviews.userId");
+    console.log(product);
+    if (!product) {
+      return res.json(createResponse(null, "Product not found", true, false));
+    }
     return res.json(
       createResponse(product, "Product updated successfully", false)
     );

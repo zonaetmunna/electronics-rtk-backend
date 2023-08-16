@@ -18,5 +18,10 @@
   {
     "name": "InnovaTech",
     "description": "Cutting-edge technology and innovation at your fingertips. Explore the future with InnovaTech laptops."
+  },
+
+  {
+    "name": "Apple",
+    "description": "Explore the latest Apple products and accessories."
   }
 ]

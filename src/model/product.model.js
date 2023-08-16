@@ -71,7 +71,7 @@ const ProductSchema = mongoose.Schema(
       {
         userId: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          ref: "Auth",
         },
         rating: Number,
         comment: String,
@@ -83,7 +83,7 @@ const ProductSchema = mongoose.Schema(
     ],
     stock: {
       type: Boolean,
-      required: true,
+      // required: true,
     },
 
     specifications: spcSchema,
