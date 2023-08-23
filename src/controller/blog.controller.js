@@ -7,6 +7,9 @@ const postBlog = async (req, res, next) => {
     const blogData = req.body;
     const blog = new Blog(blogData);
     const savedBlog = await blog.save();
+    if (!savedBlog) {
+      return res.json(createResponse(null, "Blog not created", true));
+    }
     return res.json(createResponse(blog, "Blog created successfully", false));
   } catch (error) {
     next(error);
@@ -15,8 +18,11 @@ const postBlog = async (req, res, next) => {
 
 const getBlogs = async (req, res, next) => {
   try {
-    const blogs = await Blog.find({});
-    return res.json(blogs);
+    const blogs = await Blog.find({}).populate("author");
+    if (!blogs) {
+      return res.json(createResponse(null, "Blogs not found", true));
+    }
+    return res.json(createResponse(blogs, "Blogs fetched successfully", false));
   } catch (error) {
     next(error);
   }
@@ -26,8 +32,11 @@ const getBlogs = async (req, res, next) => {
 const getSingleBlog = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const blog = await Blog.findOne({ _id: id });
-    return res.json(blog);
+    const blog = await Blog.findOne({ _id: id }).populate("author");
+    if (!blog) {
+      return res.json(createResponse(null, "Blog not found", true));
+    }
+    return res.json(createResponse(blog, "Blog fetched successfully", false));
   } catch (error) {
     next(error);
   }

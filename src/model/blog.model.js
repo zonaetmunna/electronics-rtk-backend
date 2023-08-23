@@ -13,6 +13,10 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String, // Change the data type if categories have more details
+    required: true,
+  },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Auth",

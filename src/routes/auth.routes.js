@@ -11,6 +11,7 @@ const {
   updateUser,
   deleteUser,
   googleSignin,
+  getAdmin,
 } = require("../controller/authController");
 const errorHandler = require("../middleware/errorHandler");
 
@@ -26,5 +27,6 @@ router.get(
 router.get("/user/:id", getUser);
 router.put("/user/:id", updateUser);
 router.delete("/user/:id", deleteUser);
+router.get("/admin", getAdmin);
 
 module.exports = router;

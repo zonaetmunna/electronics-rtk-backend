@@ -1,3 +1,4 @@
+const router = require("express").Router();
 const {
   postBlog,
   getBlogs,
@@ -5,8 +6,6 @@ const {
   updateBlog,
   getSingleBlog,
 } = require("../controller/blog.controller");
-
-const router = express.Router();
 
 router.post("/", postBlog);
 router.get("/", getBlogs);

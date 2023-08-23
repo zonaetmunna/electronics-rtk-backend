@@ -23,6 +23,7 @@
     "nodemon": "^2.0.21",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
+    "socket.io": "^4.7.2",
     "stripe": "^12.17.0",
     "validator": "^13.11.0"
   },

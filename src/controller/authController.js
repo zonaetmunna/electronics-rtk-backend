@@ -189,6 +189,15 @@ const getUser = async (req, res, next) => {
     next(error);
   }
 };
+// get admin
+const getAdmin = async (req, res, next) => {
+  try {
+    const user = await Auth.find({ role: "admin" });
+    return res.json(user);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // update user
 const updateUser = async (req, res, next) => {
@@ -224,6 +233,7 @@ module.exports = {
   googleSignin,
   getUsers,
   getUser,
+  getAdmin,
   updateUser,
   deleteUser,
 };
