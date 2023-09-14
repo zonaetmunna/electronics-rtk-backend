@@ -1,7 +1,7 @@
 const Blog = require("../model/blog.model");
 const createResponse = require("../utils/responseGenerate");
 
-// create
+// create blog
 const postBlog = async (req, res, next) => {
   try {
     const blogData = req.body;
@@ -16,6 +16,7 @@ const postBlog = async (req, res, next) => {
   }
 };
 
+// get all blogs
 const getBlogs = async (req, res, next) => {
   try {
     const blogs = await Blog.find({}).populate("author");

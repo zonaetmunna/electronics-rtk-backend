@@ -21,6 +21,10 @@ const blogSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Auth",
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Blog = mongoose.model("Blog", blogSchema);
