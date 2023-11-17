@@ -1,45 +1,45 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
-const bcrypt = require('bcrypt');
+const mongoose = require('mongoose')
+const { Schema } = mongoose
+const bcrypt = require('bcrypt')
 
 const AuthSchema = new Schema(
-	{
-		firstName: {
-			type: String,
-			// required: true,
-		},
-		lastName: {
-			type: String,
-			// required: true,
-		},
-		email: {
-			type: String,
-			unique: 'Email Address is Already Registered!',
-			required: [true, 'Email is required!'],
-			trim: true,
-		},
-		password: {
-			type: String,
-		},
-		role: {
-			type: String,
-			default: 'user',
-			enum: ['admin', 'user'],
-		},
-		image: {
-			type: String,
-		},
-		phone: {
-			type: String,
-		},
-		status: {
-			type: String,
-			default: 'verified',
-			enum: ['verified', 'pending', 'blocked'],
-		},
-	},
-	{ timestamp: true }
-);
+  {
+    firstName: {
+      type: String,
+      // required: true,
+    },
+    lastName: {
+      type: String,
+      // required: true,
+    },
+    email: {
+      type: String,
+      unique: 'Email Address is Already Registered!',
+      required: [true, 'Email is required!'],
+      trim: true,
+    },
+    password: {
+      type: String,
+    },
+    role: {
+      type: String,
+      default: 'user',
+      enum: ['admin', 'user'],
+    },
+    image: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+    status: {
+      type: String,
+      default: 'verified',
+      enum: ['verified', 'pending', 'blocked'],
+    },
+  },
+  { timestamp: true },
+)
 
 /* AuthSchema.pre("save", async function (next) {
   try {
@@ -57,4 +57,4 @@ AuthSchema.methods.isValidPassword = async function (password) {
   return compare;
 }; */
 
-module.exports = mongoose.model('Auth', AuthSchema);
+module.exports = mongoose.model('Auth', AuthSchema)
