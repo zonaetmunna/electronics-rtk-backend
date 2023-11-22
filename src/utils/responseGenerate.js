@@ -3,7 +3,7 @@ const createResponse = (data, message = null, error = false) => {
     data,
     message,
     error,
-  }
-}
+  };
+};
 
-module.exports = createResponse
+module.exports = createResponse;

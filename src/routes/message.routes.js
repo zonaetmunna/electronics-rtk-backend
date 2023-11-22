@@ -1,7 +1,7 @@
-const { postMessage, getMessage } = require('../controller/message.controller')
-const router = require('express').Router()
+const { postMessage, getMessage } = require('../controller/message.controller');
+const router = require('express').Router();
 
-router.post('/', postMessage)
-router.get('/:conversationId', getMessage)
+router.post('/', postMessage);
+router.get('/:conversationId', getMessage);
 
-module.exports = router
+module.exports = router;

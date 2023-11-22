@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const brandSchema = mongoose.Schema({
   name: {
@@ -12,8 +12,8 @@ const brandSchema = mongoose.Schema({
       ref: 'Product',
     },
   ],
-})
+});
 
-const Brand = mongoose.model('Brand', brandSchema)
+const Brand = mongoose.model('Brand', brandSchema);
 
-module.exports = Brand
+module.exports = Brand;

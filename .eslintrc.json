@@ -4,26 +4,20 @@
     "commonjs": true,
     "es2021": true
   },
-  "extends": [
-    "airbnb",
-
-    "eslint:recommended",
-    "eslint-config-prettier",
-    "plugin:prettier/recommended",
-    "prettier"
-  ],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "plugins": ["prettier", ""],
+  "plugins": ["prettier"],
 
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {},
-      {
-        "usePrettierrc": true
-      }
-    ]
+    "no-unused-vars": "error",
+    "no-unused-expressions": "error",
+    "prefer-const": "error",
+    "no-console": "warn",
+    "no-undef": "error"
+  },
+  "globals": {
+    "process": "readonly"
   }
 }

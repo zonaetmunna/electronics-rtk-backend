@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
-const bcrypt = require('bcrypt')
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+// eslint-disable-next-line no-unused-vars
+const bcrypt = require('bcrypt');
 
 const AuthSchema = new Schema(
   {
@@ -39,7 +40,7 @@ const AuthSchema = new Schema(
     },
   },
   { timestamp: true },
-)
+);
 
 /* AuthSchema.pre("save", async function (next) {
   try {
@@ -57,4 +58,4 @@ AuthSchema.methods.isValidPassword = async function (password) {
   return compare;
 }; */
 
-module.exports = mongoose.model('Auth', AuthSchema)
+module.exports = mongoose.model('Auth', AuthSchema);

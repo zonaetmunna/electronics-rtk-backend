@@ -3,13 +3,13 @@ const {
   getOrder,
   getUserOrder,
   getSingleOrder,
-} = require('../controller/orderController')
+} = require('../controller/orderController');
 
-const router = require('express').Router()
+const router = require('express').Router();
 
-router.post('/', postOrder)
-router.get('/', getOrder)
-router.get('/user/:email', getUserOrder)
-router.get('/:id', getSingleOrder)
+router.post('/', postOrder);
+router.get('/', getOrder);
+router.get('/user/:email', getUserOrder);
+router.get('/:id', getSingleOrder);
 
-module.exports = router
+module.exports = router;
