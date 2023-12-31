@@ -1,5 +1,5 @@
 // external imports
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const spcSchema = mongoose.Schema({
   processor: String,
@@ -17,7 +17,7 @@ const spcSchema = mongoose.Schema({
   psu: String,
 
   cooler: String,
-});
+})
 
 const ProductSchema = mongoose.Schema(
   {
@@ -97,7 +97,7 @@ const ProductSchema = mongoose.Schema(
     },
   },
   { timestamp: true },
-);
+)
 
-const Product = mongoose.model('Product', ProductSchema);
-module.exports = Product;
+const Product = mongoose.model('Product', ProductSchema)
+module.exports = Product

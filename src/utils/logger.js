@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment')
 
 const colors = {
   green: '\x1b[32m',
@@ -7,10 +7,10 @@ const colors = {
   cyan: '\x1b[36m',
   blue: '\x1b[34m',
   default: '',
-};
+}
 
 module.exports = function (message, color = 'default') {
   // Logs in BD time UTC+6
-  const tm = moment().utc().add(6, 'hours').format('DDMMMYY_h:mA');
-  console.log(colors[color.toLowerCase()] || '', `[${tm}] ${message}`);
-};
+  const tm = moment().utc().add(6, 'hours').format('DDMMMYY_h:mA')
+  console.log(colors[color.toLowerCase()] || '', `[${tm}] ${message}`)
+}

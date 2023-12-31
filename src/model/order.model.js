@@ -1,6 +1,6 @@
 // external imports
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const orderSchema = new Schema(
   {
@@ -52,7 +52,7 @@ const orderSchema = new Schema(
     // ... other fields
   },
   { timestamps: true },
-);
+)
 
-const Order = mongoose.model('Order', orderSchema);
-module.exports = Order;
+const Order = mongoose.model('Order', orderSchema)
+module.exports = Order
