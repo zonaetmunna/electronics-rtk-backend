@@ -7,11 +7,11 @@ const AuthSchema = new Schema(
   {
     firstName: {
       type: String,
-      // required: true,
+      required: false,
     },
     lastName: {
       type: String,
-      // required: true,
+      required: false,
     },
     email: {
       type: String,

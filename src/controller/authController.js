@@ -7,6 +7,7 @@ const signupUser = async (req, res, next) => {
   try {
     // catch the request body
     const body = req.body
+
     // check if email exists
     if (body.email) {
       const existingUser = await Auth.findOne({ email: body.email })
@@ -16,18 +17,21 @@ const signupUser = async (req, res, next) => {
           .json(createResponse(null, 'Email already exists!', false))
       }
     }
+
     // hash the password
     const hashedPassword = await bcrypt.hash(body.password, 10)
+
     // create a new user
     const user = new Auth({
       firstName: body.firstName,
       lastName: body.lastName,
       email: body.email,
       password: hashedPassword,
-      // ... other fields
     })
+
     // save the user
     await user.save()
+
     // return response
     return res.json(createResponse(user, 'Registration successful', false))
   } catch (error) {
@@ -40,21 +44,27 @@ const login = async (req, res, next) => {
   try {
     // find the user
     const user = await Auth.findOne({ email: req.body.email })
+    console.log('🚀 ~ login ~ user:', user)
+
     // check if user exists
     if (!user) {
       throw new Error('No user with this email!')
     }
+
     // check password
     const isValidPassword = await bcrypt.compare(
       req.body.password,
       user.password,
     )
+
     // check if password is valid
     if (!isValidPassword) {
       throw new Error('Incorrect email or password!')
     }
+
     // generate token
     const token = jwt.issueJWT(user)
+
     // return response
     return res.json(
       createResponse(
@@ -77,66 +87,6 @@ const login = async (req, res, next) => {
     next(err)
   }
 }
-
-/* // registerUser
-const signupUser = async (req, res, next) => {
-  try {
-    const body = req.body;
-    if (body.email) {
-      const existingUser = await Auth.findOne({ email: body.email });
-      if (existingUser) {
-        throw new Error("Email already exists!");
-      }
-    }
-
-    const user = new Auth(body);
-    await user.save();
-    console.log(user);
-    return res.json(createResponse(user, "Registration successful", false));
-  } catch (error) {
-    next(error);
-  }
-};
-
-//login
-const login = async (req, res, next) => {
-  try {
-    // get user with finding
-    const user = await Auth.findOne({ email: req.body.email });
-
-    // check user
-    if (!user) {
-      throw new Error("No user with this email!");
-    }
-
-    const isValidPassword = await user.isValidPassword(req.body.password);
-
-    if (!isValidPassword) {
-      throw new Error("Incorrect email or password!");
-    }
-
-    const token = jwt.issueJWT(user);
-    return res.json(
-      createResponse(
-        {
-          firstName: user.name,
-          lastName: user.lastName,
-          email: user.email,
-          _id: user._id,
-          image: user.image,
-          phone: user.phone,
-          role: user.role,
-          status: user.status,
-          token,
-        },
-        "Login successful!",
-        false
-      )
-    );
-  } catch (err) {
-    next(err);
-  }
-}; */
 
 // google sing in
 const googleSignin = async (req, res, next) => {
