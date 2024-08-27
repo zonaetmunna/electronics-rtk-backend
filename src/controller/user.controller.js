@@ -7,7 +7,7 @@ const catchAsync = require('../utils/catchAsync')
 const createCustomer = catchAsync(async (req, res) => {
   const { customer } = req.body
 
-  const result = await UserServices.createCustomerIntoDB(req.file, customer)
+  const result = await UserServices.createCustomerIntoDB(customer)
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

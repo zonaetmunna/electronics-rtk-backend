@@ -2,9 +2,9 @@ const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
 const errorHandler = require('./middleware/errorHandler')
-const routes = require('./routes/routes')
 const notFound = require('./middleware/notFound')
 // const socketHandler = require('./sockets/socketHandler')
+const routes = require('./routes') // Import the routes
 
 // middleware
 const app = express()

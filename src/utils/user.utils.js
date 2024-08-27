@@ -1,6 +1,5 @@
 // year semesterCode 4digit number
 
-// import { User } from './user.model'
 const User = require('../model/user.model')
 
 const findLastStudentId = async () => {

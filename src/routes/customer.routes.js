@@ -1,20 +1,19 @@
-const express = require('express')
 const auth = require('../middleware/auth')
 const { USER_ROLE } = require('../constant/user.constant')
-const AdminControllers = require('../controller/admin.controller')
+const CustomerControllers = require('../controller/customer.controller')
 
-const router = express.Router()
+const router = require('express').Router()
 
 router.get(
   '/',
   auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  AdminControllers.getAllAdmins,
+  CustomerControllers.getAllCustomers,
 )
 
 router.get(
   '/:id',
   auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  AdminControllers.getSingleAdmin,
+  CustomerControllers.getSingleCustomer,
 )
 
 router.patch(
@@ -22,15 +21,13 @@ router.patch(
   auth(USER_ROLE.superAdmin),
 
   // validateRequest(updateAdminValidationSchema),
-  AdminControllers.updateAdmin,
+  CustomerControllers.updateCustomer,
 )
 
 router.delete(
   '/:adminId',
   auth(USER_ROLE.superAdmin),
-  AdminControllers.deleteAdmin,
+  CustomerControllers.deleteCustomer,
 )
 
-const AdminRoutes = router
-
-module.exports = AdminRoutes
+module.exports = router

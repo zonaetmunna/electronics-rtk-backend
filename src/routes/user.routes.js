@@ -1,12 +1,8 @@
-import { USER_ROLE } from '../constant/user.constant'
-import auth from '../middleware/auth'
-import { upload } from '../utils/sendImageToCloudinary'
-
+const auth = require('../middleware/auth')
+const { USER_ROLE } = require('../constant/user.constant')
 const UserControllers = require('../controller/user.controller')
 
-const express = require('express')
-
-const router = express.Router()
+const router = require('express').Router()
 
 router.post(
   '/create-customer',
@@ -17,7 +13,7 @@ router.post(
   //   next()
   // },
   // validateRequest(createStudentValidationSchema),
-  UserControllers.createStudent,
+  UserControllers.createCustomer,
 )
 
 router.post(
@@ -29,17 +25,17 @@ router.post(
   //   next()
   // },
   // validateRequest(createFacultyValidationSchema),
-  UserControllers.createFaculty,
+  UserControllers.createManager,
 )
 
 router.post(
   '/create-admin',
   auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  upload.single('file'),
-  (req, res, next) => {
-    req.body = JSON.parse(req.body.data)
-    next()
-  },
+  // upload.single('file'),
+  // (req, res, next) => {
+  //   req.body = JSON.parse(req.body.data)
+  //   next()
+  // },
   // validateRequest(createAdminValidationSchema),
   UserControllers.createAdmin,
 )
@@ -62,4 +58,4 @@ router.get(
   UserControllers.getMe,
 )
 
-export const UserRoutes = router
+module.exports = router

@@ -1,8 +1,8 @@
 const httpStatus = require('http-status')
-const config = require('../../config')
-const catchAsync = require('../../utils/catchAsync')
-const sendResponse = require('../../utils/sendResponse')
 const AuthServices = require('../services/auth.service')
+const catchAsync = require('../utils/catchAsync')
+const sendResponse = require('../utils/sendResponse')
+const config = require('../config')
 
 const loginUser = catchAsync(async (req, res) => {
   const result = await AuthServices.loginUser(req.body)

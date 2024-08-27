@@ -9,18 +9,17 @@ const User = require('../model/user.model')
 const Customer = require('../model/customer.model')
 const AppError = require('../errors/AppError')
 const Manager = require('../model/manager.model')
-const { generateAdminId, generateManagerId } = require('../utils/user.utils')
+const { generateManagerId, generateAdminId } = require('../utils/user.utils')
 
 const createCustomerIntoDB = async payload => {
   console.log('🚀 ~ payload:', payload)
 
   // create a user object
-  const customerData = {}
-
-  //set student role
-  customerData.role = 'customer'
-  // set student email
-  customerData.email = payload.email
+  const customerData = {
+    role: 'customer',
+    email: payload.email,
+    password: payload.password,
+  }
 
   const session = await mongoose.startSession()
 
@@ -35,8 +34,12 @@ const createCustomerIntoDB = async payload => {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create user')
     }
 
-    // create a student (transaction-2)
-    const newCustomer = await Customer.create([payload], { session })
+    const customerPayload = {
+      ...payload,
+      user: newUser[0]._id, // Reference to the created User
+    }
+
+    const newCustomer = await Customer.create([customerPayload], { session })
 
     if (!newCustomer.length) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create customer')

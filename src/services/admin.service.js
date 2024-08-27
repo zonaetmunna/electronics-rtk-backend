@@ -3,10 +3,10 @@ const httpStatus = require('http-status')
 const mongoose = require('mongoose')
 // import QueryBuilder from '../../builder/QueryBuilder'
 const AppError = require('../errors/AppError')
-const User = require('../modules/user/user.model')
-const Admin = require('../modules/admin/admin.model')
 const { AdminSearchableFields } = require('../constant/admin.constant')
 const QueryBuilder = require('../builder/QueryBuilder')
+const Admin = require('../model/admin.model')
+const User = require('../model/user.model')
 
 const getAllAdminsFromDB = async query => {
   const adminQuery = new QueryBuilder(Admin.find(), query)

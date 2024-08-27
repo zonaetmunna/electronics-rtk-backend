@@ -1,12 +1,12 @@
 const httpStatus = require('http-status')
 
 const User = require('../model/user.model')
-const { createToken, verifyToken } = require('../utils/auth.utils')
 const config = require('../config')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const sendEmail = require('../utils/sendEmail')
 const AppError = require('../errors/AppError')
+const { createToken, verifyToken } = require('../utils/auth.utils')
+const { sendEmail } = require('../utils/sendEmail')
 
 const loginUser = async payload => {
   // checking if the user is exist

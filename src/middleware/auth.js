@@ -3,7 +3,7 @@ const httpStatus = require('http-status')
 const catchAsync = require('../utils/catchAsync')
 const AppError = require('../errors/AppError')
 const config = require('../config')
-const User = require('../modules/user/user.model')
+const User = require('../model/user.model')
 
 const auth = (...requiredRoles) => {
   return catchAsync(async (req, res, next) => {
