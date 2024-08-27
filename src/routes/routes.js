@@ -1,5 +1,7 @@
 const router = require('express').Router()
 
+router.use('/admin', require('./admin.route'))
+router.use('/user', require('./user.routes'))
 router.use('/products', require('./product.routes'))
 router.use('/category', require('./category.routes'))
 router.use('/brand', require('./brand.routes'))

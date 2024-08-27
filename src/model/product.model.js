@@ -87,14 +87,6 @@ const ProductSchema = mongoose.Schema(
     },
 
     specifications: spcSchema,
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now,
-    },
   },
   { timestamp: true },
 )

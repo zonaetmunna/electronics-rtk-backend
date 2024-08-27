@@ -4,7 +4,7 @@ const conversationSchema = new mongoose.Schema({
   members: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Auth',
+      ref: 'User',
     },
   ],
 })

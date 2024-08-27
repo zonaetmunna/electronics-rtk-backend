@@ -1,32 +1,43 @@
 // external import
 const router = require('express').Router()
+const { USER_ROLE } = require('../constant/user.constant')
+const AuthControllers = require('../controller/authController')
+const auth = require('../middleware/auth')
 // const passport = require('passport');
 
-// internal import
-const {
-  signupUser,
-  getUser,
-  login,
-  getUsers,
-  updateUser,
-  deleteUser,
-  googleSignin,
-  getAdmin,
-} = require('../controller/authController')
 const errorHandler = require('../middleware/errorHandler')
 
-router.post('/signup', signupUser, errorHandler)
-router.post('/login', login, errorHandler)
-router.post('/google-signin', googleSignin, errorHandler)
+// router.post('/signup', AuthControllers., errorHandler)
+router.post('/login', AuthControllers.loginUser, errorHandler)
+// router.post('/google-signin', googleSignin, errorHandler)
 
-router.get(
-  '/users',
-  //   passport.authenticate("jwt", { session: false }),
-  getUsers,
+router.post(
+  '/change-password',
+  auth(
+    USER_ROLE.superAdmin,
+    USER_ROLE.admin,
+    USER_ROLE.faculty,
+    USER_ROLE.student,
+  ),
+  AuthControllers.changePassword,
 )
-router.get('/user/:id', getUser)
-router.put('/user/:id', updateUser)
-router.delete('/user/:id', deleteUser)
-router.get('/admin', getAdmin)
+
+router.post(
+  '/refresh-token',
+  // validateRequest(AuthValidation.refreshTokenValidationSchema),
+  AuthControllers.refreshToken,
+)
+
+router.post(
+  '/forget-password',
+  // validateRequest(AuthValidation.forgetPasswordValidationSchema),
+  AuthControllers.forgetPassword,
+)
+
+router.post(
+  '/reset-password',
+  // validateRequest(AuthValidation.forgetPasswordValidationSchema),
+  AuthControllers.resetPassword,
+)
 
 module.exports = router
