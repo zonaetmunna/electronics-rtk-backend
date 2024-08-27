@@ -10,7 +10,7 @@ const routes = require('./routes') // Import the routes
 const app = express()
 
 // cors
-app.use(cors())
+app.use(cors({ origin: ['http://localhost:3000'], credentials: true }))
 // body parser
 app.use(express.json())
 
