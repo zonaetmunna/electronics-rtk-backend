@@ -11,23 +11,34 @@ const AppError = require('../errors/AppError')
 const Manager = require('../model/manager.model')
 const { generateManagerId, generateAdminId } = require('../utils/user.utils')
 
-const createCustomerIntoDB = async payload => {
-  console.log('🚀 ~ payload:', payload)
+const generateCustomerId = async () => {
+  const latestCustomer = await Customer.findOne().sort({ createdAt: -1 })
+  const latestId = latestCustomer ? latestCustomer.id : 'CUST0000'
+  const newId = `CUST${(parseInt(latestId.slice(4)) + 1)
+    .toString()
+    .padStart(4, '0')}`
+  return newId
+}
 
+const createCustomerIntoDB = async payload => {
+  console.log('🚀 ~ createCustomerIntoDB ~ payload:', payload)
   // create a user object
-  const customerData = {
-    role: 'customer',
-    email: payload.email,
-    password: payload.password,
-  }
+  const userData = {}
 
   const session = await mongoose.startSession()
 
   try {
     session.startTransaction()
 
+    const customerId = await generateCustomerId()
+
+    userData.id = customerId
+    userData.password = payload.password
+    userData.role = 'customer'
+    userData.email = payload.email
+
     // create a user (transaction-1)
-    const newUser = await User.create([customerData], { session }) // array
+    const newUser = await User.create([userData], { session }) // array
 
     //create a customer
     if (!newUser.length) {
@@ -35,6 +46,7 @@ const createCustomerIntoDB = async payload => {
     }
 
     const customerPayload = {
+      id: customerId, // Automatically generated customer ID
       ...payload,
       user: newUser[0]._id, // Reference to the created User
     }
@@ -56,7 +68,7 @@ const createCustomerIntoDB = async payload => {
   }
 }
 
-const createManagerIntoDB = async (file, password, payload) => {
+const createManagerIntoDB = async (password, payload) => {
   // create a user object
   const userData = {}
 
@@ -154,11 +166,14 @@ const createAdminIntoDB = async (file, password, payload) => {
 
 const getMe = async (userId, role) => {
   let result = null
-  if (role === 'student') {
+  if (role === 'customer') {
     result = await Customer.findOne({ id: userId }).populate('user')
   }
   if (role === 'admin') {
     result = await Admin.findOne({ id: userId }).populate('user')
+  }
+  if (role === 'superAdmin') {
+    result = await User.findOne({ id: userId })
   }
 
   if (role === 'manager') {

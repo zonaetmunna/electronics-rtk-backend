@@ -16,6 +16,7 @@ const auth = (...requiredRoles) => {
 
     // checking if the given token is valid
     const decoded = jwt.verify(token, config.jwt_access_secret)
+    console.log('🚀 ~ returncatchAsync ~ decoded:', decoded)
 
     const { role, userId, iat } = decoded
 

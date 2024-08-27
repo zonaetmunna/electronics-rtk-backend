@@ -10,7 +10,7 @@ const { sendEmail } = require('../utils/sendEmail')
 
 const loginUser = async payload => {
   // checking if the user is exist
-  const user = await User.isUserExistsByCustomId(payload.id)
+  const user = await User.isUserExistsByEmail(payload.email)
 
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !')

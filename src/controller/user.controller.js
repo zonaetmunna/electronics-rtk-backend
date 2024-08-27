@@ -5,9 +5,7 @@ const catchAsync = require('../utils/catchAsync')
 
 // create customer controller
 const createCustomer = catchAsync(async (req, res) => {
-  const { customer } = req.body
-
-  const result = await UserServices.createCustomerIntoDB(customer)
+  const result = await UserServices.createCustomerIntoDB(req.body)
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -20,11 +18,7 @@ const createCustomer = catchAsync(async (req, res) => {
 const createManager = catchAsync(async (req, res) => {
   const { password, manager } = req.body
 
-  const result = await UserServices.createFacultyIntoDB(
-    req.file,
-    password,
-    manager,
-  )
+  const result = await UserServices.createManagerIntoDB(password, manager)
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
