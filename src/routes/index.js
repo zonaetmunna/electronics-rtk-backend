@@ -1,10 +1,8 @@
-// const router = require('express').Router()
 const { Router } = require('express')
 
 const UserRoutes = require('./user.routes') // Ensure this path is correct
 const CustomerRoutes = require('./customer.routes')
 const AdminRoutes = require('./admin.routes')
-// const ManagerRoutes = require('./manager.routes')
 const ProductRoutes = require('./product.routes')
 const CategoryRoutes = require('./category.routes')
 const BrandRoutes = require('./brand.routes')
@@ -13,6 +11,7 @@ const ConversationRoutes = require('./conversation.routes')
 const MessageRoutes = require('./message.routes')
 const AuthRoutes = require('./auth.routes')
 const BlogRoutes = require('./blog.routes')
+const ManagerRoutes = require('./manager.routes')
 
 const router = Router()
 
@@ -29,10 +28,10 @@ const moduleRoutes = [
     path: '/admin',
     route: AdminRoutes,
   },
-  // {
-  //   path: '/manager',
-  //   route: ManagerRoutes,
-  // },
+  {
+    path: '/manager',
+    route: ManagerRoutes,
+  },
   {
     path: '/products',
     route: ProductRoutes,
